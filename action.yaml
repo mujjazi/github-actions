@@ -1,0 +1,38 @@
+name: 'Upload API to APITree'
+description: 'Uploads and convert your OpenAPI v2 / v3 specification into a beautiful technical API documentation hosted on hub.apitree.com'
+author: 'APITree'
+inputs:
+  apitree_user_id:
+    description: 'Your APITree ID which can be found under https://hub.apitree.com/profile'
+    required: true
+  apitree_api_nickname:
+    description: 'The nickname is a shortname and will be used for the URL at which your API documentation can be accessed in APITree. Allowed characters: A-Z, a-z, 0-9, -, _'
+    required: true
+  apitree_api_type:
+    description: 'The visibility of the API. APIs of type `public` are visible for anyone in the APITree HUB. APIs of type `private` (default) are visible just for you (the members of the organization) and the people you share the API documentation with'
+    required: false
+    default: 'private'
+  apitree_api_file:
+    description: 'Relative path to the API specification file - e.g. `spec/openapi.yaml`'
+    required: true
+  apitree_auto_commit:
+    description: 'Creates a new commit for the API specification file (default = true). Recommended to set to `false` on non-master branches.'
+    required: false
+    default: true
+  apitree_commit_message:
+    description: 'Commit message for the API specification file. Ignored if `apitree_auto_commit` is set to `false`. Max. 1000 characters, format: `[db70e4c](https://github.com/apitree/user-api/commit/db70e4c7757d13e518ccf5a923fa693d92aaa5eb) - Added new endpoints`'
+    required: false
+  apitree_token:
+    description: 'The API Token which is needed for authorization. Go to your APITree account and create an API Token with the scope `api`'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    - ${{ inputs.apitree_user_id }}
+    - ${{ inputs.apitree_api_nickname }}
+    - ${{ inputs.apitree_api_type }}
+    - ${{ inputs.apitree_api_file }}
+    - ${{ inputs.apitree_auto_commit }}
+    - ${{ inputs.apitree_commit_message }}
+    - ${{ inputs.apitree_token }}
