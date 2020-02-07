@@ -1,4 +1,4 @@
-# APITree: github-upload-api-actions
+# APITree: github-actions
 
 This [Github Action](https://github.com/actions) uploads and converts an [OpenAPI v2 / v3 specification](https://github.com/OAI/OpenAPI-Specification) into a technical API doc hosted on [APITree](https://www.apitree.com).
 
