@@ -1,6 +1,9 @@
 name: 'Upload API to APITree'
 description: 'Uploads and convert your OpenAPI v2 / v3 specification into a beautiful technical API documentation hosted on hub.apitree.com'
 author: 'APITree'
+branding:
+  icon: file-text
+  color: green
 inputs:
   apitree_user_id:
     description: 'Your APITree ID which can be found under https://hub.apitree.com/profile'
