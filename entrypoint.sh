@@ -66,7 +66,7 @@ if [[ $api_exists == "404" ]]; then
     curl -v \
         -H "Content-Type:multipart/form-data" \
         -H "Authorization: Bearer ${apitree_token}" \
-        -F "body={\"type\":\"${apitree_api_type}\",\"nickname\":\"${apitree_api_nickname}\",\"autoCommit\":${apitree_auto_commit},\"commitMessage\":\"${commitMsg}\"}" \
+        -F "body={\"type\":\"${apitree_api_type}\",\"nickname\":\"${apitree_api_nickname}\",\"autoCommit\":${apitree_auto_commit},\"commitMessage\":\"${apitree_commit_message}\"}" \
         -F "spec=@${GITHUB_WORKSPACE}/${apitree_api_file}" \
         "${protocol}://${host}/api/${apitree_user_id}/import"
 
@@ -76,7 +76,7 @@ else
     curl -v \
         -H "Content-Type:multipart/form-data" \
         -H "Authorization: Bearer ${apitree_token}" \
-        -F "body={\"type\":\"${apitree_api_type}\",\"autoCommit\":${apitree_auto_commit},\"commitMessage\":\"${commitMsg}\"}" \
+        -F "body={\"type\":\"${apitree_api_type}\",\"autoCommit\":${apitree_auto_commit},\"commitMessage\":\"${apitree_commit_message}\"}" \
         -F "spec=@${GITHUB_WORKSPACE}/${apitree_api_file}" \
         "${protocol}://${host}/api/${apitree_user_id}/${apitree_api_nickname}/import"
 
