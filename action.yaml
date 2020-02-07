@@ -1,5 +1,5 @@
-name: 'Upload API to APITree'
-description: 'Uploads and convert your OpenAPI v2 / v3 specification into a beautiful technical API documentation hosted on hub.apitree.com'
+name: 'Publish API doc on APITree'
+description: 'Uploads and converts an OpenAPI v2 / v3 specification into a technical API doc hosted on apitree.com'
 author: 'APITree'
 branding:
   icon: file-text
