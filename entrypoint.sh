@@ -2,12 +2,11 @@
 set -e
 set -o pipefail
 
-if [[ -z "$INPUT_APITREE_USER_ID" ]]; then
+if [[ -z "$apitree_user_id" ]]; then
     echo "Set the apitree_user_id env variable."
     exit 1
 fi
 echo "APITree USER ID...: ${apitree_user_id}"
-echo "APITree USER ID...: ${INPUT_APITREE_USER_ID}"
 
 if [[ -z "$apitree_api_nickname" ]]; then
     echo "Set the apitree_api_nickname env variable."
@@ -32,13 +31,14 @@ fi
 echo "API auto-commit...: ${apitree_auto_commit}"
 
 if [[ -z "$apitree_commit_message" ]]; then
-    git_sha=$(git hash-object ${apitree_api_file})
-    git_log=$(git log -1 --pretty=%s -- ${apitree_api_file})
+    git_commit_hash=$(git log -1 --pretty=%H -- ${apitree_api_file})
+    git_commit_hash_abbrev=$(git log -1 --pretty=%h -- ${apitree_api_file})
+    git_commit_subject=$(git log -1 --pretty=%s -- ${apitree_api_file})
 
     if [[ apitree_api_type == "public" ]]; then
-        apitree_commit_message=${git_log}
+        apitree_commit_message=${git_commit_subject}
     else
-        apitree_commit_message="[$(git rev-parse --short ${git_sha})](https://github.com/${GITHUB_REPOSITORY}/commit/${git_sha}) - ${git_log}"
+        apitree_commit_message="[${git_commit_hash_abbrev}](https://github.com/${GITHUB_REPOSITORY}/commit/${git_commit_hash}) - ${git_commit_subject}"
     fi
 fi
 echo "Commit message....: ${apitree_commit_message}"
