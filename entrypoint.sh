@@ -31,11 +31,11 @@ fi
 echo "API auto-commit...: ${apitree_auto_commit}"
 
 if [[ -z "$apitree_commit_message" ]]; then
-    git_commit_hash=$(git log -1 --pretty=%H -- ${apitree_api_file})
-    git_commit_hash_abbrev=$(git log -1 --pretty=%h -- ${apitree_api_file})
-    git_commit_subject=$(git log -1 --pretty=%s -- ${apitree_api_file})
+    git_commit_hash=$(git log -1 --pretty=%H -- ${GITHUB_WORKSPACE}/${apitree_api_file})
+    git_commit_hash_abbrev=$(git log -1 --pretty=%h -- ${GITHUB_WORKSPACE}/${apitree_api_file})
+    git_commit_subject=$(git log -1 --pretty=%s -- ${GITHUB_WORKSPACE}/${apitree_api_file})
 
-    if [[ apitree_api_type == "public" ]]; then
+    if [[ $apitree_api_type == "public" ]]; then
         apitree_commit_message=${git_commit_subject}
     else
         apitree_commit_message="[${git_commit_hash_abbrev}](https://github.com/${GITHUB_REPOSITORY}/commit/${git_commit_hash}) - ${git_commit_subject}"
