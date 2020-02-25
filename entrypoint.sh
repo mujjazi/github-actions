@@ -2,11 +2,12 @@
 set -e
 set -o pipefail
 
-if [[ -z "$apitree_user_id" ]]; then
+if [[ -z "$INPUT_APITREE_USER_ID" ]]; then
     echo "Set the apitree_user_id env variable."
     exit 1
 fi
 echo "APITree USER ID...: ${apitree_user_id}"
+echo "APITree USER ID...: ${INPUT_APITREE_USER_ID}"
 
 if [[ -z "$apitree_api_nickname" ]]; then
     echo "Set the apitree_api_nickname env variable."

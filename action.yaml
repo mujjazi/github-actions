@@ -31,11 +31,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    - ${{ inputs.apitree_user_id }}
-    - ${{ inputs.apitree_api_nickname }}
-    - ${{ inputs.apitree_api_type }}
-    - ${{ inputs.apitree_api_file }}
-    - ${{ inputs.apitree_auto_commit }}
-    - ${{ inputs.apitree_commit_message }}
-    - ${{ inputs.apitree_token }}
